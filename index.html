@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
+<head>
+	<title>HTML5 Module Starter Kit</title>
+	
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+
+	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+</head>
+
+<body >
+	 <div class="jeu-ecran" id="jeu-ecran">  
+                    	
+                        <div class="gobelets">
+                        <div class="gobelet-cont g1" g="1">
+                          <img src="ombre.png" alt="" class="ombre"/>
+                          <img id="item1" src="lapin.png" alt="" class="itemAtrouver"/>
+                          <img src="gobelet.png" alt="" class="gobelet" id="gobelet1"/>
+                        </div>
+                        <div class="gobelet-cont g2" g="2">
+                          <img src="ombre.png" alt="" class="ombre"/>
+                          <img id="item2" src="lapin.png" alt="" class="itemAtrouver"/>
+                          <img src="gobelet.png" alt="" class="gobelet" id="gobelet2"/>
+                        </div>
+                        <div class="gobelet-cont g3" g="3"><img src="ombre.png" alt="" class="ombre"/>
+                          <img id="item3" src="lapin.png" alt="" class="itemAtrouver"/>
+                          <img src="gobelet.png" alt="" class="gobelet" id="gobelet3"/>
+                        </div>                    
+                  	</div>
+                  
+                  </div>
+    <div class="jeu-perdu" id="jeu-perdu">
+    </div>
+    <div class="jeu-gagné" id="jeu-gagné">
+    </div>
+                                                                                                                               
+   <button class='button' onclick='start()'>Jouer</button>
+   <button class='button' onclick='reset()'>reset</button>
+</body>
+	<script type="text/javascript" src="./js/lib/jquery.min.js"></script> 
+	<script type="text/javascript" src="./param/data.js"></script>
+	<script type="text/javascript" src="./js/functions.js"></script> 
+	
+</body>
+</html>
