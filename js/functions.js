@@ -65,7 +65,7 @@ $('#gobelet'+randomInt+'').animate({top:"00px"}, animg1);
 
 }
 
-function verif(randomInt){
+var verif = function(randomInt){
 
   var g= randomInt;
 
@@ -89,8 +89,8 @@ if(r == g){
 })}
 
 var start = function (){
-  randomInt = Math.floor(Math.random() * (3 - 1 +1)) + 1;
-
+	
+randomInt = Math.floor(Math.random() * (3 - 1 +1)) + 1;
 showItem(randomInt);
 verif(randomInt);
 
