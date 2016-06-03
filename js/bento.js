@@ -12,8 +12,8 @@ function showItem(randomInt){
  //document.getElementById("item"+randomInt+'').style.zIndex = "1";
  document.getElementById("item"+randomInt+'').style.display = "block";
 $('#item'+randomInt+'').show();
-$('#gobelet'+randomInt+'').animate({top:"00px"}, animg1);
-
+//$('#gobelet'+randomInt+'').animate({top:"00px"}, animg1);
+game(1, 700);
 }
 
 function verif(){
