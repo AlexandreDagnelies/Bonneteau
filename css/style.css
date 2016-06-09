@@ -6,7 +6,9 @@
 }
 
 body {
-	background: #333 no-repeat; 
+	background-image:url(../param/img/bg.png);
+        background-attachment:fixed;
+        background-size:100% 100%;
 }
 /*  BENTO */
 
@@ -24,10 +26,17 @@ body {
   width: 203px;
 }
 */
+#shield{
+    height: 100%;
+    width: 100%;
+    z-index: 50;
+    position: absolute;
+    opacity:0;
+}
 
 .gobelet {
   height: 200px;
-  width: 200px;
+  width: 120px;
 }
 .gobelets{
   display:none;
@@ -45,7 +54,7 @@ body {
   height: 20%;
 }
 
-.gobelets .gobelet-cont .ombre{
+.gobelets .gobelet-cont .shade{
   position:relative;
   margin-top:15px;
 }
@@ -53,24 +62,24 @@ body {
 .gobelets .g1{
   /*top:70px;
   left:100px;*/
-  top: 25%;
-  left: 15%;
+  top: 48%;
+  left: 22%;
    margin-right: 20%;
 }
 
 .gobelets .g2{
   /*top:100px;
   left:250px;*/
-  top: 30%;
-  left: 35%;
+  top: 49%;
+  left: 42%;
   
 }
 
 .gobelets .g3{
   /*top:70px;
   left:400px;*/
-  top: 25%;
-  left: 55%;
+  top: 48%;
+  left: 62%;
 }
 
 .gobelets .gobelet-cont .gobelet{
@@ -92,7 +101,8 @@ body {
 }
 
 .itemAtrouver{
-  height: 106px; width:  133px;
+  height: 50%; 
+  width:  70%;
 }
 
 
