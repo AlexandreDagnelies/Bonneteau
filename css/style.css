@@ -106,17 +106,22 @@ body {
 }
 
 
-.jeu-perdu{
+#jeu-perdu{
+   z-index: 8000;
   display: none;
-  background: #faf5f3;
-  width: 280px;
   margin-top: 5%;
   position: absolute;
   z-index: 10;
-  padding: 60px 60px 80px;
-  left: 50%;
-  margin-left: -206px;
-  opacity: 0.85;
+  left: 25%;
+  text-align: center;
+}
+#jeu-gagné{
+  z-index: 8000;
+  display: none;
+  left: 25%;
+  margin-top: 5%;
+  position: absolute;
+  z-index: 10;
   text-align: center;
 }
 
@@ -134,4 +139,31 @@ body {
     cursor:pointer;
     border: none;
 
+}
+
+.restart{
+    z-index: 8000;
+    display: none;
+    left: 25%;
+    top: 20%;
+    height: 50%;
+    width: 55%;
+    position: absolute;
+    background-image : url(../param/img/play.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor:pointer;
+    border: none;
+
+}
+
+
+
+h1  {
+color: #F6F6F6;
+font-family: arial, sans-serif;
+font-size: 300%;
+font-weight: bold;
+margin-top: 0%;
+margin-bottom: 10%;
 }

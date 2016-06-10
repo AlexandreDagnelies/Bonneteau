@@ -6,21 +6,22 @@
  * Use idol-tickets.js to manage tickets game
  */
 
-
-
 /**
  * Module initialization
  * Function called from the app
  * @param param context saved by the app
  */
+
+
 function startModule(param)
 {
+
     if (param)
         context = param;
 
     //Do something
     start();
-    iDol.output('module_output_event', outputParam);
+    //iDol.output('module_output_event', outputParam);
 
 }
 
@@ -29,15 +30,26 @@ function startModule(param)
  * Function called from the app when the scenario restart for the next customer
  * @param param context saved by the app
  */
-function restartModule(param)
+
+ function restart() {
+
+    $('.restart').fadeOut(1000, function() {
+    $('.itemAtrouver').hide();
+    $('.jeu').hide();
+    $('#shield').hide({complete:restartModule});
+
+    });
+ }
+function restartModule()
 {
-    if (param)
-        context = param;
+
+    //if (param)
+      //  context = param;
 
     //Do something
 
-    iDol.output('module_output_event', outputParam);
-
+   //iDol.output('module_output_event', outputParam);
+startModule();
 }
 
 var isMobile = new RegExp('/iphone|ipad|ipod|android|blackberry/i').test(navigator.userAgent.toLowerCase());
@@ -48,60 +60,68 @@ if (!isMobile) {
     });
 }
 
+var start = function () {
+console.log("start");
+
+    $('.button').fadeOut(1000, function() {
+        $('.gobelets').fadeIn(100);
+        randomInt = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
+        // Affiche le dé + appel de game
+        showItem(randomInt);
+        $('#shield').hide();
+            $(".gobelet-cont").off('click').on('click', function (){
+        r = $(this).attr('g');
+        console.log(r);
+        if (r == randomInt) {
+            console.log("gagné");
+            //gagné
+            $('#gobelet' + r + '').animate({top: "-150px"}, 'slow');
+            //document.getElementById('jeu-gagné').style.display = "block";
+            $('#jeu-gagné').css({"display": "block"});
+            $('#jeu-gagné').show();
+            $('body').append( "<div id='shield'></div>" );
+            $('#gobelet' + r + '').animate({top: "00px"}, 'slow');
+            $('.restart').css({"display": "block"});
+            item = randomInt;
+           
+
+        } else {
+            console.log("perdu");
+            $('#gobelet' + r + '').animate({top: "-150px"}, 'slow');
+            //document.getElementById('jeu-perdu').style.display = "block";
+            $('#jeu-perdu').css({"display": "block"});
+            $('#jeu-perdu').show();
+            $('#gobelet' + r + '').animate({top: "00px"}, 'slow');
+             $('.restart').css({"display": "block"});
+            $('body').append( "<div id='shield'></div>" );
+        }
+
+    })
+    });
+
+};
+
+
+
 
 
 var showItem = function (randomInt) {
+   
+console.log("ShowItem");
     jQuery.fx.speeds.slow = 1500;
-
     $('#gobelet' + randomInt + '').animate({top: "-150px"}, 'slow');
     $('#item' + randomInt + '').hide();
-    var item = 'item' + randomInt;
-    console.log();
+    item = 'item' + randomInt;
+    //console.log();
     //document.getElementById("item"+randomInt+'').style.zIndex = "1";
-    document.getElementById("item" + randomInt + '').style.display = "block";
+    //document.getElementById("item" + randomInt + '').style.display = "block";
+     $('#item' + randomInt + '').css({"display": "block"});
     $('#item' + randomInt + '').show();
     $('#gobelet' + randomInt + '').animate({top: "00px"}, function() {game(Math.floor(Math.random() * 2)+1,700);});
 
 }
 
-var verif = function (randomInt) {
 
-    var g = randomInt;
-
-    $(".gobelet-cont").click(function () {
-        var r = $(this).attr('g');
-        console.log(r);
-
-        if (r == g) {
-            //gagné
-            $('#gobelet' + r + '').animate({top: "-150px"}, 'slow');
-            document.getElementById('jeu-gagné').style.display = "block";
-            $('jeu-gagné').show();
-
-        } else {
-            $('#gobelet' + r + '').animate({top: "-150px"}, 'slow');
-            document.getElementById('jeu-perdu').style.display = "block";
-            $('jeu-perdu').show();
-        }
-
-    })
-}
-
-   
-var start = function () {
-    
-    $('.button').fadeOut(1000, function() {
-        $('.gobelets').fadeIn(100);
-        randomInt = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
-        showItem(randomInt);
-        verif(randomInt);
-        //empeche l'utilisateur de cliquer pendant l'action
-        $('body').append( "<div id='shield'></div>" );
-    });
-  
-
-
-};
 
 function swichPlaceRight(divRight, divMiddle, speed) {
     $(divMiddle).css({"z-index":"0"});
@@ -144,7 +164,7 @@ function game(val, speed){
     console.log(SpeedIncrement);
     //on recéupère la positon des 3 gobelets et on les places dans un tableau
     var cupArray = [$("#cupOne"), $("#cupTwo"), $("#cupThree")];
-    if(trick < 16){
+    if(trick < 2){
             //On trie les gobelets
         cupArray.sort(function(a, b) {
             return a.position().left - b.position().left;
@@ -164,6 +184,8 @@ function game(val, speed){
         //fin du jeu
        //On remet trick à zéro pour relancer
        trick = 0;
+       SpeedIncrement = 0;
+
        //On redonne accès au click à l'utilisateur
         $('#shield').remove();
     }
