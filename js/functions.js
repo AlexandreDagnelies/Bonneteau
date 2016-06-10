@@ -80,8 +80,7 @@ console.log("start");
             $('#jeu-gagné').css({"display": "block"});
             $('#jeu-gagné').show();
             $('body').append( "<div id='shield'></div>" );
-            $('#gobelet' + r + '').animate({top: "00px"}, 'slow');
-            $('.restart').css({"display": "block"});
+            $('#gobelet' + r + '').animate({top: "00px"}, 'slow', function() {$('.restart').fadeIn(500)});
             item = randomInt;
            
 
@@ -91,8 +90,7 @@ console.log("start");
             //document.getElementById('jeu-perdu').style.display = "block";
             $('#jeu-perdu').css({"display": "block"});
             $('#jeu-perdu').show();
-            $('#gobelet' + r + '').animate({top: "00px"}, 'slow');
-             $('.restart').css({"display": "block"});
+            $('#gobelet' + r + '').animate({top: "00px"}, 'slow', function() {$('.restart').fadeIn(500)});
             $('body').append( "<div id='shield'></div>" );
         }
 
@@ -164,7 +162,7 @@ function game(val, speed){
     console.log(SpeedIncrement);
     //on recéupère la positon des 3 gobelets et on les places dans un tableau
     var cupArray = [$("#cupOne"), $("#cupTwo"), $("#cupThree")];
-    if(trick < 2){
+    if(trick < 16){
             //On trie les gobelets
         cupArray.sort(function(a, b) {
             return a.position().left - b.position().left;
