@@ -40,6 +40,7 @@ function restartModule()
   //Do something
 
   //iDol.output('module_output_event', outputParam);
+  $('#shield').remove();
   startModule();
 }
 
@@ -61,7 +62,9 @@ if (!isMobile) {
  Function showItem : Param randomInt
  */
 
+
 function start() {
+//console.log("start");
 
   $('.button').fadeOut(1000, function () {
     $('.gobelets').fadeIn(100);
@@ -69,18 +72,19 @@ function start() {
     randomInt = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
     // Display a thimble 
     showItem(randomInt);
-    //allows the player to click
-    $('#shield').hide();
+    //enable the player to click
+    $('body').append("<div id='shield'></div>");
     $(".gobelet-cont").off('click').on('click', function () {
       r = $(this).attr('g');
       if (r == randomInt) {
         //Win
         $('#gobelet' + r + '').animate({top: "-150px"}, 'slow');
+        //document.getElementById('jeu-gagné').style.display = "block";
         $('#jeu-gagné').css({"display": "block"});
         $('#jeu-gagné').show();
         $('body').append("<div id='shield'></div>");
         $('#gobelet' + r + '').animate({top: "00px"}, 'slow', function () {
-          $('.restart').fadeIn(500)
+          $('.restart').fadeIn(500);
         });
 
       } else {
@@ -90,29 +94,30 @@ function start() {
         $('#jeu-perdu').css({"display": "block"});
         $('#jeu-perdu').show();
         $('#gobelet' + r + '').animate({top: "00px"}, 'slow', function () {
-          $('.restart').fadeIn(500)
+          $('.restart').fadeIn(500);
         });
         $('body').append("<div id='shield'></div>");
       }
-    })
+    });
   });
 
-};
-
+}
+;
 /*
  * Reset the module
  * @returns {undefined}
  */
- function restart() {
+function restart() {
 
-    $('.restart').fadeOut(1000, function() {
+  $('.restart').fadeOut(1000, function () {
     $('.itemAtrouver').hide();
     $('.jeu').hide();
-    $('#shield').hide({complete:restartModule});
-
+    $('#shield').hide(function () {
+      restartModule();
     });
- }
 
+  });
+}
 /*
  Displays the dice in the cup.
  Call by start()
@@ -136,7 +141,11 @@ function showItem(randomInt) {
 
 
 /*
- * Alex tu dois commenter !
+ * 
+ * @param {type} divRight
+ * @param {type} divMiddle
+ * @param {type} speed
+ * @returns {undefined}
  */
 function swichPlaceRight(divRight, divMiddle, speed) {
   $(divMiddle).css({"z-index": "0"});
@@ -144,21 +153,25 @@ function swichPlaceRight(divRight, divMiddle, speed) {
   var bezier_params = {
     start: {x: divRight.position().left, y: divRight.position().top, angle: -400},
     end: {x: divMiddle.position().left, y: divMiddle.position().top, angle: 40, length: 0.2}
-  }
+  };
 
   var bezier_params2 = {
     start: {x: divMiddle.position().left, y: divMiddle.position().top, angle: -400},
     end: {x: divRight.position().left, y: divRight.position().top, angle: 40, length: 0.2}
-  }
+  };
 
   $(divRight).animate({path: new $.path.bezier(bezier_params)}, speed);
   $(divMiddle)
       .animate({path: new $.path.bezier(bezier_params2)}, speed, function () {
-    game(1, 700);
-  });
+        game(1, 700);
+      });
 }
 /*
- * Alex !
+ * ALEEEEEEX
+ * @param {type} divLeft
+ * @param {type} divMiddle
+ * @param {type} speed
+ * @returns {undefined}
  */
 function swichPlaceLeft(divLeft, divMiddle, speed) {
   $(divMiddle).css({"z-index": "1"});
@@ -166,25 +179,25 @@ function swichPlaceLeft(divLeft, divMiddle, speed) {
   var bezier_params = {
     start: {x: divLeft.position().left, y: divLeft.position().top, angle: -400},
     end: {x: divMiddle.position().left, y: divMiddle.position().top, angle: 40, length: 0.2}
-  }
+  };
 
   var bezier_params2 = {
     start: {x: divMiddle.position().left, y: divMiddle.position().top, angle: -400},
     end: {x: divLeft.position().left, y: divLeft.position().top, angle: 40, length: 0.2}
-  }
+  };
 
   $(divLeft).animate({path: new $.path.bezier(bezier_params)}, speed);
   $(divMiddle)
       .animate({path: new $.path.bezier(bezier_params2)}, speed, function () {
-    game(0, 700);
-  });
+        game(0, 700);
+      });
 
 }
-/*/
- * Alex !
- */
 var trick = 0;
 var SpeedIncrement = 0;
+/*
+ * ALEX
+ */
 function game(val, speed) {
   //console.log(trick);
   //console.log(SpeedIncrement);
