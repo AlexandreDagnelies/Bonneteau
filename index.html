@@ -1,46 +1,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" >
-<head>
-	<title>HTML5 Module Starter Kit</title>
-	
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+<html  lang="fr" >
 
-	<link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
-</head>
+  <head>
+    <title>Bento</title>
 
-<body >
-	 <div class="jeu-ecran" id="jeu-ecran">  
-                    	
-                        <div class="gobelets">
-                        <div class="gobelet-cont g1" g="1">
-                          <img src="./param/img/ombre.png" alt="" class="ombre"/>
-                          <img id="item1" src="./param/img/lapin.png" alt="" class="itemAtrouver"/>
-                          <img src="./param/img/gobelet.png" alt="" class="gobelet" id="gobelet1"/>
-                        </div>
-                        <div class="gobelet-cont g2" g="2">
-                          <img src="./param/img/ombre.png" alt="" class="ombre"/>
-                          <img id="item2" src="./param/img/lapin.png" alt="" class="itemAtrouver"/>
-                          <img src="./param/img/gobelet.png" alt="" class="gobelet" id="gobelet2"/>
-                        </div>
-                        <div class="gobelet-cont g3" g="3"><img src="./param/img/ombre.png" alt="" class="ombre"/>
-                          <img id="item3" src="./param/img/lapin.png" alt="" class="itemAtrouver"/>
-                          <img src="./param/img/gobelet.png" alt="" class="gobelet" id="gobelet3"/>
-                        </div>                    
-                  	</div>
-                  
-                  </div>
-    <div class="jeu-perdu" id="jeu-perdu">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+
+    <script type="text/javascript" src="./js/lib/jquery.min.js"></script> 
+    <script type="text/javascript" src="./js/functions.js"></script> 
+    <script type="text/javascript" src="./js/lib/jquery.path.js"></script>
+
+
+  </head>
+
+  <body>
+    <div class="jeu-ecran" id="jeu-ecran">  
+
+      <div class="gobelets">
+        <div class="gobelet-cont g1" g="1" id="cupOne">
+          <img id="item1" src="./param/img/thimble.png" alt="" class="itemAtrouver"/>
+          <img src="./param/img/gobelet.png" alt="" class="gobelet" id="gobelet1"/>
+        </div>
+        <div class="gobelet-cont g2" g="2" id="cupTwo">
+          <img id="item2" src="./param/img/thimble.png" alt="" class="itemAtrouver"/>
+          <img src="./param/img/gobelet.png" alt="" class="gobelet" id="gobelet2"/>
+        </div>
+        <div class="gobelet-cont g3" g="3" id="cupThree">
+          <img id="item3" src="./param/img/thimble.png" alt="" class="itemAtrouver"/>
+          <img src="./param/img/gobelet.png" alt="" class="gobelet" id="gobelet3"/>
+        </div>                    
+      </div>
+
     </div>
-    <div class="jeu-gagné" id="jeu-gagné">
-    </div>
-                                                                                                                               
-   <button class='button' onclick='start()'>Jouer</button>
-   <button class='button' onclick='reset()'>reset</button>
-</body>
-	<script type="text/javascript" src="./js/lib/jquery.min.js"></script> 
-	<script type="text/javascript" src="./param/param.js"></script>
-	<script type="text/javascript" src="./js/functions.js"></script> 
-	
-</body>
-</html>
+    <div class="jeu" id="jeu-perdu">
+
+      <h1> Vous avez perdu ! </h1>
+
+          </div>
+          <div class="jeu" id="jeu-gagné">
+
+            <h1> Vous avez gagné ! </h1>
+
+                </div>     
+                <div class='restart' onclick='restart()'></div>                                                                                                                          
+                <div class='button' onclick='startModule()'></div> 
+
+                </body>
+
+                </html>
