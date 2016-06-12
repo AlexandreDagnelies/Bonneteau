@@ -118,6 +118,7 @@ function restart() {
 
   });
 }
+
 /*
  Displays the dice in the cup.
  Call by start()
@@ -134,18 +135,17 @@ function showItem(randomInt) {
   $('#item' + randomInt + '').css({"display": "block"});
   $('#item' + randomInt + '').show();
   $('#gobelet' + randomInt + '').animate({top: "00px"}, function () {
-    game(Math.floor(Math.random() * 2) + 1, 700);
+    game(700);
   });
 
 }
 
 
 /*
- * 
- * @param {type} divRight
- * @param {type} divMiddle
- * @param {type} speed
- * @returns {undefined}
+ * moves the middle cup and the right
+ * @param  divRight
+ * @param  divMiddle
+ * @param  speed
  */
 function swichPlaceRight(divRight, divMiddle, speed) {
   $(divMiddle).css({"z-index": "0"});
@@ -163,15 +163,14 @@ function swichPlaceRight(divRight, divMiddle, speed) {
   $(divRight).animate({path: new $.path.bezier(bezier_params)}, speed);
   $(divMiddle)
       .animate({path: new $.path.bezier(bezier_params2)}, speed, function () {
-        game(1, 700);
+        game(700);
       });
 }
 /*
- * ALEEEEEEX
- * @param {type} divLeft
- * @param {type} divMiddle
- * @param {type} speed
- * @returns {undefined}
+ * moves the middle cup and the left
+ * @param  divLeft
+ * @param  divMiddle
+ * @param  speed
  */
 function swichPlaceLeft(divLeft, divMiddle, speed) {
   $(divMiddle).css({"z-index": "1"});
@@ -189,47 +188,51 @@ function swichPlaceLeft(divLeft, divMiddle, speed) {
   $(divLeft).animate({path: new $.path.bezier(bezier_params)}, speed);
   $(divMiddle)
       .animate({path: new $.path.bezier(bezier_params2)}, speed, function () {
-        game(0, 700);
+        game(700);
       });
 
 }
+//for the number of turns
 var trick = 0;
-var SpeedIncrement = 0;
+//for the mixing speed
+var speedIncrement = 0;
+
+
 /*
- * ALEX
+ * mixing cups
+ * @param  speed
  */
-function game(val, speed) {
-  //console.log(trick);
-  //console.log(SpeedIncrement);
-  //on recéupère la positon des 3 gobelets et on les places dans un tableau
+function game(speed) {
+  // Get the position of the 3 cups and places in an array
   var cupArray = [$("#cupOne"), $("#cupTwo"), $("#cupThree")];
+  //number of turns
   if (trick < 16) {
-    //On trie les gobelets
+    // We sort cups
     cupArray.sort(function (a, b) {
       return a.position().left - b.position().left;
     });
     var leftCup = cupArray[0];
     var middleCup = cupArray[1];
     var rightCup = cupArray[2];
-    //Mode Aléatoire
-    val = Math.floor(Math.random() * 2) + 1;
+    //We choosing randomly which side must go the middle cup
+    var val = Math.floor(Math.random() * 2) + 1;
     if (val == 1) {
-      swichPlaceLeft(leftCup, middleCup, (speed - SpeedIncrement)); 
+      swichPlaceLeft(leftCup, middleCup, (speed - speedIncrement)); 
     } else {
-      swichPlaceRight(rightCup, middleCup, (speed - SpeedIncrement));
+      swichPlaceRight(rightCup, middleCup, (speed - speedIncrement));
 
     }
   } else {
-    //fin du jeu
-    //On remet trick à zéro pour relancer
+    //end of Game
+    //trick and speedIncrement is reset to restart
     trick = 0;
-    SpeedIncrement = 0;
+    speedIncrement = 0;
 
-    //On redonne accès au click à l'utilisateur
+    // It provides access to the user click
     $('#shield').remove();
   }
-
-  SpeedIncrement += 30;
+  //each turn we increment speed increment of 30 and trick of 1
+  speedIncrement += 30;
   trick++;
 }
 
